@@ -460,8 +460,8 @@ Map::~Map()
  
   glDeleteVertexArrays(1, &m_vaoID);
 
-  for(map_surface* tmp = _surface; tmp != NULL; tmp++)
-    delete tmp;
+
+  delete _surface;
 
   delete m_vertices;
   delete m_texture;

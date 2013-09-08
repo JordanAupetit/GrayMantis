@@ -19,6 +19,7 @@
 //#include "Beam.h"
 //#include "Projectil.h"
 //#include "Laser.h"
+#include "Navmesh.h"
 #include "Map.h"
 
 
@@ -59,6 +60,7 @@ class Core
 
   std::vector<GLuint> _img_manager;
   std::vector<TrxModel*>  _model_manager;
+  std::vector<Navmesh>  _navmesh;
 
   //Beam* startBeam;
   //Beam* endBeam;
@@ -68,6 +70,7 @@ class Core
 
   //Projectil* startProjectil;
   //Projectil* endProjectil;
+
 
 
  public:
@@ -100,6 +103,7 @@ class Core
  void       loadTextures();
  void       loadModels();
  void       loadShaders();
+ void	    loadNavmesh();
 
 
   // ---------- IMG MANAGER-------------
@@ -126,16 +130,16 @@ class Core
  // void		updateAllBeam(float);
  // void		renderAllBeam(glm::mat4&, glm::mat4&);
 
- // ---------- BEAM MANAGER -----------
+ // ---------- PROJ MANAGER -----------
 
  // void		addProjectil(Projectil* );
  // void		delProjectil(Projectil* );
  // void		updateAllProjectil(float, float);
  // void		renderAllProjectil(glm::mat4&, glm::mat4&);
 
- // ---------- PROJ MANAGER -----------
+ // ---------- NAVM MANAGER -----------
 
- 
+ void			renderAllNavmesh(glm::mat4&, glm::mat4&);
 
 
   // ---------- SETTER ------------------

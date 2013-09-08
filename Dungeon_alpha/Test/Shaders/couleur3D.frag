@@ -19,5 +19,5 @@ void main()
 {
     // Couleur finale du pixel
 
-    out_Color = vec4(0.0, 0.7, 0.2, 0.1);
+    out_Color = vec4(color, 0.4);
 }

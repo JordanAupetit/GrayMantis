@@ -176,10 +176,11 @@ void Core::run() {
 
   NPCSoldier soldier(ENT_NPC_SOLDIER, glm::vec3(5,0,5));
 
+  loadNavmesh();
+
+
   // NavMesh
 
-
-  Navmesh nav(glm::vec3(4,0,2), 7, 10);
 
   while( running ){
 
@@ -207,8 +208,9 @@ void Core::run() {
     // ----------------------- RENDER --------------------------
        
     _level->afficher(projection, modelview);
-    soldier.draw(projection, modelview);
-    nav.draw(projection, modelview);
+    renderAllNavmesh(projection, modelview);
+    //soldier.draw(projection, modelview);
+
 
     modelview = sauvegardeModelview;
 
@@ -546,6 +548,15 @@ void Core::addModel(const char* name){
 
 // }
 
+//  //////////////////////////////////// NAVMESH MAN ///////////////////////////////////
+
+void Core::renderAllNavmesh(glm::mat4& p, glm::mat4& m){
+
+  for(int i = 0; i < _navmesh.size(); i++)
+    _navmesh[i].draw(p,m);
+
+}
+
 ////////////////////////////////////////// LOAD //////////////////////////////////
 
 void Core::loadShaders(){
@@ -587,4 +598,40 @@ void Core::loadModels(){
   printf("\n");
  
 
+}
+
+void Core::loadNavmesh(){
+
+  _navmesh.push_back(Navmesh(glm::vec3(4,0,2), 7, 10));
+
+  _navmesh.push_back(Navmesh(glm::vec3(11,0,6), 12, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,6), 17, 3));
+
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,9), 3, 11));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,23), 3, 6));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,33), 3, 9));
+
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,9), 3, 5));
+  _navmesh.push_back(Navmesh(glm::vec3(39,0,14), 11, 10));
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,24), 3, 5));
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,29), 17, 4));
+
+  _navmesh.push_back(Navmesh(glm::vec3(10,0,20), 13, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(2,0,17), 8, 11));
+  _navmesh.push_back(Navmesh(glm::vec3(4,0,28), 3, 6));
+  _navmesh.push_back(Navmesh(glm::vec3(2,0,34), 13, 13));
+
+  _navmesh.push_back(Navmesh(glm::vec3(15,0,42), 8, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,42), 17, 3));
+
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,39), 7, 8));
+
+  // jonction
+
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,6), 3, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,29), 3, 4));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,6), 3, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,20), 3, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,29), 3, 4));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,42), 3, 3));
 }
