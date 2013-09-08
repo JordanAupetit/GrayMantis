@@ -7,7 +7,7 @@
 #include <GL/glew.h>
 
 #include "Util.h"
-#include "Shader.h"
+
 
 
 int getRandomValue(int min, int max){
@@ -30,7 +30,7 @@ void drawLine(glm::mat4& p, glm::mat4 m, glm::vec3 p1, glm::vec3 p2, glm::vec3 c
 
 
   float vertices[] = {p1.x, p1.y, p1.z, p2.x, p2.y, p2.z};
-  float color[] = {col.x, col.y, col.z};
+  float color[] = {col.x, col.y, col.z, col.x, col.y, col.z};
 
   glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, vertices);
   glEnableVertexAttribArray(0);

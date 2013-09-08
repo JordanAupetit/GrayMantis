@@ -6,7 +6,7 @@
 
 
 Navmesh::Navmesh(glm::vec3 pos, float w, float h, float red, float green, float blue)
-  : _position(pos), _width(w), _height(h), _center(pos.x + _height/2, 0, pos.z + _width/2),
+  : _position(pos), _width(w), _height(h), _center(pos.x + (w/2), 0, pos.z + (h/2)),
   	_top(NULL), _left(NULL), _right(NULL), _bottom(NULL)
 {
   printf("Navmesh created\n");
@@ -27,6 +27,11 @@ Navmesh::Navmesh(glm::vec3 pos, float w, float h, float red, float green, float 
   vertice[10] = 0.1;
   vertice[11] = pos.z + _height;
 
+  /*
+  _center.x = pos.x + (_width / 2);
+  _center.y = 0;
+  _center.z = pos.z + (_height / 2);
+  */
 
 
   float r,g,b;
@@ -115,7 +120,44 @@ glDrawArrays(GL_QUADS, 0, 4);
   glUseProgram(0);
 
 
-  drawLine(projection, modelview, _center, glm::vec3(_center.x, _center.y + 1, _center.z), glm::vec3(0.0f, 0.0f, 0.0f) ,shdr);
+  drawLine(projection, modelview, _center, glm::vec3(_center.x, _center.y + 1, _center.z), glm::vec3(1.0f, 0.0f, 1.0f) ,shdr);
+
+  // debug -- link
+  
+  glm::vec3 dbg_color = glm::vec3(1.0f, 0.0f, 1.0f);
+
+  if(_top){
+    
+    glm::vec3 p1 = glm::vec3(_center.x, _center.y + 0.2, _center.z);
+    glm::vec3 p2 = glm::vec3(_top->getCenter().x, _top->getCenter().y + 0.2, _top->getCenter().z);
+
+    drawLine(projection, modelview, p1, p2, dbg_color ,shdr);
+
+  }
+  if(_bottom){
+    
+    glm::vec3 p1 = glm::vec3(_center.x, _center.y + 0.6, _center.z);
+    glm::vec3 p2 = glm::vec3(_bottom->getCenter().x, _bottom->getCenter().y + 0.6, _bottom->getCenter().z);
+
+    drawLine(projection, modelview, p1, p2, dbg_color ,shdr);
+
+  }
+  if(_left){
+    
+    glm::vec3 p1 = glm::vec3(_center.x, _center.y + 0.4, _center.z);
+    glm::vec3 p2 = glm::vec3(_left->getCenter().x, _left->getCenter().y + 0.4, _left->getCenter().z);
+
+    drawLine(projection, modelview, p1, p2, dbg_color ,shdr);
+
+  }
+  if(_right){
+    
+    glm::vec3 p1 = glm::vec3(_center.x, _center.y + 0.8, _center.z);
+    glm::vec3 p2 = glm::vec3(_right->getCenter().x, _right->getCenter().y + 0.8, _right->getCenter().z);
+
+    drawLine(projection, modelview, p1, p2, dbg_color ,shdr);
+
+  }
 
 
 }
