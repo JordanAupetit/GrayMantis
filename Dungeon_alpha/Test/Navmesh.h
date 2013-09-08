@@ -22,6 +22,11 @@ class Navmesh
   bool update(float);
   void draw(glm::mat4&, glm::mat4&);
 
+  void setTop(Navmesh*);
+  void setLeft(Navmesh*);
+  void setRight(Navmesh*);
+  void setBottom(Navmesh*);
+
   glm::vec3 getPos() const{return _position;}
  
  protected:

@@ -119,3 +119,24 @@ glDrawArrays(GL_QUADS, 0, 4);
 
 
 }
+
+void Navmesh::setTop(Navmesh* n)
+{
+  _top = n;
+}
+
+void Navmesh::setLeft(Navmesh* n)
+{
+  _left = n;
+}
+
+void Navmesh::setRight(Navmesh* n)
+{
+  _right = n;
+}
+
+void Navmesh::setBottom(Navmesh* n)
+{
+  _bottom = n;
+}
+

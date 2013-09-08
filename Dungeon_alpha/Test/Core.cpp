@@ -602,36 +602,117 @@ void Core::loadModels(){
 
 void Core::loadNavmesh(){
 
-  _navmesh.push_back(Navmesh(glm::vec3(4,0,2), 7, 10, 1, 0, 0));
+  _navmesh.push_back(Navmesh(glm::vec3(4,0,2), 7, 10, 1, 0, 0)); // 0 <=== Couleur Rouge du navmesh
 
-  _navmesh.push_back(Navmesh(glm::vec3(11,0,6), 12, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(26,0,6), 17, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(11,0,6), 12, 3));   // 1
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,6), 17, 3));  // 2
 
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,9), 3, 11));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,23), 3, 6));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,33), 3, 9));
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,9), 3, 11));  // 3
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,23), 3, 6));  // 4
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,33), 3, 9));  // 5
 
-  _navmesh.push_back(Navmesh(glm::vec3(43,0,9), 3, 5));
-  _navmesh.push_back(Navmesh(glm::vec3(39,0,14), 11, 10));
-  _navmesh.push_back(Navmesh(glm::vec3(43,0,24), 3, 5));
-  _navmesh.push_back(Navmesh(glm::vec3(26,0,29), 17, 4));
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,9), 3, 5));   // 6
+  _navmesh.push_back(Navmesh(glm::vec3(39,0,14), 11, 10));  // 7
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,24), 3, 5));  // 8
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,29), 17, 4));   // 9
 
-  _navmesh.push_back(Navmesh(glm::vec3(10,0,20), 13, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(2,0,17), 8, 11));
-  _navmesh.push_back(Navmesh(glm::vec3(4,0,28), 3, 6));
-  _navmesh.push_back(Navmesh(glm::vec3(2,0,34), 13, 13));
+  _navmesh.push_back(Navmesh(glm::vec3(10,0,20), 13, 3));   // 10
+  _navmesh.push_back(Navmesh(glm::vec3(2,0,17), 8, 11));  // 11
+  _navmesh.push_back(Navmesh(glm::vec3(4,0,28), 3, 6));   // 12
+  _navmesh.push_back(Navmesh(glm::vec3(2,0,34), 13, 13));   // 13
 
-  _navmesh.push_back(Navmesh(glm::vec3(15,0,42), 8, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(26,0,42), 17, 3));
+  _navmesh.push_back(Navmesh(glm::vec3(15,0,42), 8, 3));  // 14
+  _navmesh.push_back(Navmesh(glm::vec3(26,0,42), 17, 3));   // 15
 
-  _navmesh.push_back(Navmesh(glm::vec3(43,0,39), 7, 8));
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,39), 7, 8));  // 16
+
+  //  jonction
+
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,6), 3, 3));  // 17
+  _navmesh.push_back(Navmesh(glm::vec3(43,0,29), 3, 4));  // 18
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,6), 3, 3));   // 19
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,20), 3, 3));  // 20
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,29), 3, 4));  // 21
+  _navmesh.push_back(Navmesh(glm::vec3(23,0,42), 3, 3));  // 22
+
+
+  // On ajoute les navmesh voisins de chaque navmesh
+
+  _navmesh.at(0).setTop(&_navmesh.at(1));
+
+  _navmesh.at(1).setBottom(&_navmesh.at(0));
+  _navmesh.at(1).setTop(&_navmesh.at(19));
+
+  _navmesh.at(2).setTop(&_navmesh.at(17));
+  _navmesh.at(2).setBottom(&_navmesh.at(19));
+
+  _navmesh.at(3).setLeft(&_navmesh.at(19));
+  _navmesh.at(3).setRight(&_navmesh.at(20));
+
+  _navmesh.at(4).setLeft(&_navmesh.at(20));
+  _navmesh.at(4).setRight(&_navmesh.at(21));
+
+  _navmesh.at(5).setLeft(&_navmesh.at(21));
+  _navmesh.at(5).setRight(&_navmesh.at(22));
+
+  _navmesh.at(6).setLeft(&_navmesh.at(17));
+  _navmesh.at(6).setRight(&_navmesh.at(7));
+
+  _navmesh.at(7).setLeft(&_navmesh.at(6));
+  _navmesh.at(7).setRight(&_navmesh.at(8));
+
+  _navmesh.at(8).setLeft(&_navmesh.at(7));
+  _navmesh.at(8).setRight(&_navmesh.at(18));
+
+  _navmesh.at(9).setTop(&_navmesh.at(18));
+  _navmesh.at(9).setBottom(&_navmesh.at(21));
+
+  _navmesh.at(10).setTop(&_navmesh.at(20));
+  _navmesh.at(10).setBottom(&_navmesh.at(11));
+
+  _navmesh.at(11).setTop(&_navmesh.at(10));
+  _navmesh.at(11).setRight(&_navmesh.at(12));
+
+  _navmesh.at(12).setLeft(&_navmesh.at(11));
+  _navmesh.at(12).setRight(&_navmesh.at(13));
+
+  _navmesh.at(13).setLeft(&_navmesh.at(12));
+  _navmesh.at(13).setTop(&_navmesh.at(14));
+
+  _navmesh.at(14).setBottom(&_navmesh.at(13));
+  _navmesh.at(14).setTop(&_navmesh.at(22));
+
+  _navmesh.at(15).setBottom(&_navmesh.at(22));
+  _navmesh.at(15).setTop(&_navmesh.at(16));
+
+  _navmesh.at(16).setBottom(&_navmesh.at(15)); 
+
 
   // jonction
 
-  _navmesh.push_back(Navmesh(glm::vec3(43,0,6), 3, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(43,0,29), 3, 4));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,6), 3, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,20), 3, 3));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,29), 3, 4));
-  _navmesh.push_back(Navmesh(glm::vec3(23,0,42), 3, 3));
+  _navmesh.at(17).setBottom(&_navmesh.at(2));
+  _navmesh.at(17).setRight(&_navmesh.at(6));
+
+  _navmesh.at(18).setLeft(&_navmesh.at(8));
+  _navmesh.at(18).setBottom(&_navmesh.at(9));
+
+  _navmesh.at(19).setBottom(&_navmesh.at(1));
+  _navmesh.at(19).setTop(&_navmesh.at(2));
+  _navmesh.at(19).setRight(&_navmesh.at(3));
+
+  _navmesh.at(20).setLeft(&_navmesh.at(3));
+  _navmesh.at(20).setRight(&_navmesh.at(4));
+  _navmesh.at(20).setBottom(&_navmesh.at(10));
+
+  _navmesh.at(21).setLeft(&_navmesh.at(4));
+  _navmesh.at(21).setRight(&_navmesh.at(5));
+  _navmesh.at(21).setTop(&_navmesh.at(9));
+
+  _navmesh.at(22).setLeft(&_navmesh.at(5));
+  _navmesh.at(22).setBottom(&_navmesh.at(14));
+  _navmesh.at(22).setTop(&_navmesh.at(15));
+
+
+
+
 }
