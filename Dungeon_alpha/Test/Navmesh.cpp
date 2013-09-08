@@ -4,7 +4,7 @@
 #include "Util.h"
 
 
-Navmesh::Navmesh(glm::vec3 pos, float w, float h)
+Navmesh::Navmesh(glm::vec3 pos, float w, float h, float red, float green, float blue)
   : _position(pos), _width(w), _height(h), _center(_width/2, 0, _height/2),
   	_top(NULL), _left(NULL), _right(NULL), _bottom(NULL)
 {
@@ -26,11 +26,26 @@ Navmesh::Navmesh(glm::vec3 pos, float w, float h)
   vertice[10] = 0.1;
   vertice[11] = pos.z + _height;
 
+
+
   float r,g,b;
 
-  r = getRandomValue(1, 10)/10.0f;
-  g = getRandomValue(1, 10)/10.0f;
-  b = getRandomValue(1, 10)/10.0f;
+  // On peux passer une couleur en paramètre ou en avoir une aléatoire
+
+  if(red != -1)
+    r = red;
+  else
+    r = getRandomValue(1, 10)/10.0f;
+
+  if(green != -1)
+    g = green;
+  else
+    g = getRandomValue(1, 10)/10.0f;
+
+  if(blue != -1)
+    b = blue;
+  else
+    b = getRandomValue(1, 10)/10.0f;
 
   printf(" %f : %f : %f\n", r, g, b);
 

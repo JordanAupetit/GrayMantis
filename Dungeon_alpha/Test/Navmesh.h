@@ -16,7 +16,7 @@ class Navmesh
 
  public:
 
-  Navmesh(glm::vec3, float, float);
+  Navmesh(glm::vec3, float, float, float = -1, float = -1, float = -1);
   ~Navmesh();
 
   bool update(float);

@@ -2,28 +2,29 @@ CC=g++
 SRC = Navmesh.cpp Entity.cpp NPC.cpp NPCSoldier.cpp  Map.cpp Shader.cpp Input.cpp Texture.cpp Camera.cpp Util.cpp Model.cpp objloader.cpp
 OBJ = $(SRC:.cpp=.o)
 
-INC = -I/usr/local/include/
-LIB = -L/usr/local/lib -lSOIL -lGLEW -lassimp -lm -lGL -lglfw
+GLFW_JORDAN = -I/home/nell/glfw-master/include 
+INC = -I/usr/local/include/ -I/usr/include/SOIL $(GLFW_JORDAN)
+LIB = -L/usr/local/lib -lSOIL -lGLEW -lassimp -lGLU -lX11 -lpthread -lXrandr -lXi -lXxf86vm -lrt -lm -lGL
 
 
 all:	$(OBJ)
-	$(CC) $(OBJ) main.cpp global.cpp Core.cpp $(INC) $(LIB) -o exe
+	$(CC) $(OBJ) main.cpp global.cpp Core.cpp /home/nell/glfw-master/src/libglfw3.a $(INC) $(LIB) -o exe
 
 
 Entity.o:	Entity.h Entity.cpp
-		$(CC) -c Entity.cpp -o Entity.o
+		$(CC) -c Entity.cpp $(GLFW_JORDAN) -o Entity.o
 
 Navmesh.o:	Navmesh.h Navmesh.cpp
-		$(CC) -c Navmesh.cpp -o Navmesh.o
+		$(CC) -c Navmesh.cpp $(GLFW_JORDAN) -o Navmesh.o
 
 NPC.o:		NPC.h NPC.cpp
-		$(CC) -c NPC.cpp -o NPC.o
+		$(CC) -c NPC.cpp $(GLFW_JORDAN) -o NPC.o
 
 NPCSoldier.o:	NPCSoldier.h NPCSoldier.cpp
-		$(CC) -c NPCSoldier.cpp -o NPCSoldier.o
+		$(CC) -c NPCSoldier.cpp $(GLFW_JORDAN) -o NPCSoldier.o
 
 Map.o:		Map.h Map.cpp Core.cpp
-		$(CC) -c Map.cpp -o Map.o
+		$(CC) $(GLFW_JORDAN) -c Map.cpp -o Map.o
 
 
 
@@ -31,13 +32,13 @@ Shader.o:	Shader.h Shader.cpp
 		$(CC) -c Shader.cpp -o Shader.o
 
 Input.o:	Input.h Input.cpp
-		$(CC) -c Input.cpp -o Input.o
+		$(CC) -c Input.cpp $(GLFW_JORDAN) -o Input.o
 
 Texture.o:	Texture.h Texture.cpp
-		$(CC) -c Texture.cpp -I/usr/local/include/ -o Texture.o
+		$(CC) -c Texture.cpp -I/usr/include/SOIL -o Texture.o
 
 Camera.o:	Camera.h Camera.cpp
-		$(CC) -c Camera.cpp -o Camera.o
+		$(CC) -c Camera.cpp $(GLFW_JORDAN) -o Camera.o
 
 
 Util.o:		Util.h Util.cpp
@@ -48,7 +49,7 @@ objloader.o:	objloader.h objloader.cpp
 		$(CC) -c objloader.cpp -o objloader.o
 
 Model.o:	Model.h Model.cpp
-		$(CC) -c Model.cpp -o Model.o
+		$(CC) -c Model.cpp $(GLFW_JORDAN) -o Model.o
 
 
 

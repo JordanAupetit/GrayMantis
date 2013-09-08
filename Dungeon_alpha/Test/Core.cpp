@@ -602,7 +602,7 @@ void Core::loadModels(){
 
 void Core::loadNavmesh(){
 
-  _navmesh.push_back(Navmesh(glm::vec3(4,0,2), 7, 10));
+  _navmesh.push_back(Navmesh(glm::vec3(4,0,2), 7, 10, 1, 0, 0));
 
   _navmesh.push_back(Navmesh(glm::vec3(11,0,6), 12, 3));
   _navmesh.push_back(Navmesh(glm::vec3(26,0,6), 17, 3));
