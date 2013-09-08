@@ -5,7 +5,7 @@
 
 
 Navmesh::Navmesh(glm::vec3 pos, float w, float h)
-  : _position(pos), _width(w), _height(h), _center(_width/2, 0, _height/2),
+  : _position(pos), _width(w), _height(h), _center(pos.x + _height/2, 0, pos.z + _width/2),
   	_top(NULL), _left(NULL), _right(NULL), _bottom(NULL)
 {
   printf("Navmesh created\n");
@@ -99,8 +99,7 @@ glDrawArrays(GL_QUADS, 0, 4);
   glUseProgram(0);
 
 
-
-  //drawAxis(projection, modelview, _position, _shader, _targ_vector);
+  drawLine(projection, modelview, _center, glm::vec3(_center.x, _center.y + 1, _center.z), glm::vec3(0.0f, 0.0f, 0.0f) ,shdr);
 
 
 }
