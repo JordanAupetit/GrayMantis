@@ -23,13 +23,14 @@ class Navmesh
   void draw(glm::mat4&, glm::mat4&);
 
   glm::vec3 getPos() const{return _position;}
+  glm::vec3 getCenter() const{return _center;}
  
  protected:
 
   float         vertice[12];
   float         color[12];
 
-  glm::vec3 		_position;
+  glm::vec3 	_position;
   glm::vec3     _center;
   float         _width;
   float         _height;
@@ -38,6 +39,7 @@ class Navmesh
   Navmesh*      _left;
   Navmesh*      _right;
   Navmesh*      _bottom;
+
 
 };
 #endif
