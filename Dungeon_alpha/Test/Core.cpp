@@ -178,11 +178,15 @@ void Core::run() {
 
   loadNavmesh();
 
+  
+
 
   // NavMesh
 
 
   while( running ){
+
+    
 
     //if(trx_ps._particlePerSecond > 0) trx_ps._particlePerSecond--;
 
