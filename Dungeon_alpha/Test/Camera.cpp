@@ -71,7 +71,7 @@ void Camera::orienter(int xRel, int yRel)
 
 }
 
-void Camera::deplacer(Input const &input)
+void Camera::deplacer(Input const &input, float dt)
 {
     // Avancée de la caméra
 
@@ -84,7 +84,7 @@ void Camera::deplacer(Input const &input)
   if(input.getTouche(GLFW_KEY_W))
     {
   
-      m_position = m_position + m_orientation * 0.2f;
+      m_position = m_position + m_orientation * dt * 10.0f;
       m_pointCible = m_position + m_orientation;
 
     }
@@ -94,7 +94,7 @@ void Camera::deplacer(Input const &input)
  
   if(input.getTouche(GLFW_KEY_S))
     {
-      m_position = m_position - m_orientation * 0.2f;
+      m_position = m_position - m_orientation * dt * 10.0f;
       m_pointCible = m_position + m_orientation;
     }
  
@@ -103,7 +103,7 @@ void Camera::deplacer(Input const &input)
  
   if(input.getTouche(GLFW_KEY_A))
     {
-      m_position = m_position + m_deplacementLateral * 0.2f;
+      m_position = m_position + m_deplacementLateral * dt * 10.0f;
       m_pointCible = m_position + m_orientation;
     }
  
@@ -112,7 +112,7 @@ void Camera::deplacer(Input const &input)
  
   if(input.getTouche(GLFW_KEY_D))
     {
-      m_position = m_position - m_deplacementLateral * 0.2f;
+      m_position = m_position - m_deplacementLateral * dt * 10.0f;
       m_pointCible = m_position + m_orientation;
     }
 }

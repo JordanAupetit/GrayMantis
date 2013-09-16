@@ -5,6 +5,7 @@
 #include <time.h>
 #include <string>
 #include <iostream>
+#include <unistd.h>
 
 #include "Input.h"
 #include "Texture.h"
@@ -178,9 +179,6 @@ void Core::run() {
 
   loadNavmesh();
 
-  
-
-
   // NavMesh
 
 
@@ -194,7 +192,7 @@ void Core::run() {
     //printf("getTime :%f\n", debutBoucle);
     inp.updateEvenements();
       
-    _camera->deplacer(inp);
+    _camera->deplacer(inp, tempsEcoule);
 
     // OpenGL rendering goes here...
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -228,9 +226,9 @@ void Core::run() {
 
     finBoucle =  glfwGetTime();
     tempsEcoule = finBoucle - debutBoucle;
-
-    char winname[25];
-    sprintf(winname, "FabApp - FPS : %4.2f \0", 1/tempsEcoule); 
+   
+    char winname[35];
+    sprintf(winname, "FabApp - FPS : %4.2f  --- Temps Ecoule : %f \0", 1/tempsEcoule, tempsEcoule); 
     glfwSetWindowTitle(_context, winname);
 
     //printf("fps : %f\n", 1/tempsEcoule);

@@ -21,7 +21,7 @@ class Camera
     ~Camera();
 
     void orienter(int, int);
-    void deplacer(Input const&);
+    void deplacer(Input const&, float);
     void lookAt(glm::mat4&);
     void setPointcible(glm::vec3);
     void setPosition(glm::vec3 position);
