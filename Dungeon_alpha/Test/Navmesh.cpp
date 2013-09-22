@@ -11,6 +11,11 @@ Navmesh::Navmesh(glm::vec3 pos, float w, float h, float red, float green, float 
 {
   printf("Navmesh created\n");
 
+  _dist_top = -1;
+  _dist_bottom = -1;
+  _dist_left = -1;
+  _dist_right = -1;
+
   vertice[0] = pos.x;
   vertice[1] = 0.1;
   vertice[2] = pos.z;
@@ -182,3 +187,15 @@ void Navmesh::setBottom(Navmesh* n)
   _bottom = n;
 }
 
+void Navmesh::computeDistance(){
+
+  if(_top)
+    _dist_top = sqrt(pow(_center.x - _top->getPos().x, 2) + pow(_center.z - _top->getPos().z, 2));
+  if(_left)
+    _dist_left = sqrt(pow(_center.x - _left->getPos().x, 2) + pow(_center.z - _left->getPos().z, 2));
+  if(_right)
+    _dist_right = sqrt(pow(_center.x - _right->getPos().x, 2) + pow(_center.z - _right->getPos().z, 2));
+  if(_bottom)
+    _dist_bottom = sqrt(pow(_center.x - _bottom->getPos().x, 2) + pow(_center.z - _bottom->getPos().z, 2));
+
+}

@@ -16,11 +16,17 @@ class Navmesh
 
  public:
 
+  float		_dist_top;
+  float		_dist_left;
+  float		_dist_right;
+  float		_dist_bottom;
+
   Navmesh(glm::vec3, float, float, float = -1, float = -1, float = -1);
   ~Navmesh();
 
   bool update(float);
   void draw(glm::mat4&, glm::mat4&);
+  void computeDistance();
 
   void setTop(Navmesh*);
   void setLeft(Navmesh*);
@@ -44,6 +50,8 @@ class Navmesh
   Navmesh*      _left;
   Navmesh*      _right;
   Navmesh*      _bottom;
+
+
 
 
 };

@@ -227,7 +227,7 @@ void Core::run() {
     finBoucle =  glfwGetTime();
     tempsEcoule = finBoucle - debutBoucle;
    
-    char winname[35];
+    char winname[135];
     sprintf(winname, "FabApp - FPS : %4.2f  --- Temps Ecoule : %f \0", 1/tempsEcoule, tempsEcoule); 
     glfwSetWindowTitle(_context, winname);
 
@@ -714,7 +714,17 @@ void Core::loadNavmesh(){
   _navmesh.at(22).setBottom(&_navmesh.at(14));
   _navmesh.at(22).setTop(&_navmesh.at(15));
 
+  // Calcul des distance entre le centre des NavMesh
 
+  for(int i = 0; i < _navmesh.size(); i++){
+
+    _navmesh[i].computeDistance();
+    /*printf("%f\n", _navmesh[i]._dist_top);
+    printf("%f\n", _navmesh[i]._dist_bottom);
+    printf("%f\n", _navmesh[i]._dist_right);
+    printf("%f\n", _navmesh[i]._dist_left);*/
+
+  }
 
 
 }

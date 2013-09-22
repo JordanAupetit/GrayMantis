@@ -60,7 +60,6 @@ class Core
 
   std::vector<GLuint> _img_manager;
   std::vector<TrxModel*>  _model_manager;
-  std::vector<Navmesh>  _navmesh;
 
   //Beam* startBeam;
   //Beam* endBeam;
@@ -74,6 +73,8 @@ class Core
 
 
  public:
+
+  std::vector<Navmesh>  _navmesh;
 
   // ------------ shaders --------------
 
